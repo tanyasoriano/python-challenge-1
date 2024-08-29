@@ -52,7 +52,20 @@ menu = {
 
 # 1. Set up order list. Order list will store a list of dictionaries for
 # menu item name, item price, and quantity ordered
+order_list = []
 
+# [
+#     {
+#         "Item name": "string",
+#         "Price": float,
+#         "Quantity": int
+#     },
+#     {
+#         "Item name": "string",
+#         "Price": float,
+#         "Quantity": int
+#     },
+# ]
 
 # Launch the store and present a greeting to the customer
 print("Welcome to the variety food truck.")
@@ -63,8 +76,9 @@ place_order = True
 while place_order:
     # Ask the customer from which menu category they want to order
     print("From which menu would you like to order? ")
-
+  #  menu_item_number = input()
     # Create a variable for the menu item number
+    
     i = 1
     # Create a dictionary to store the menu for later retrieval
     menu_items = {}
@@ -117,27 +131,33 @@ while place_order:
                         "Price": value
                     }
                     i += 1
+            print(menu_items)
             # 2. Ask customer to input menu item number
-
+           #def menu_selection():
+        menu_selection = input("Please enter your selection from the menu.")
 
             # 3. Check if the customer typed a number
-
+        if menu_selection.isdigit():
                 # Convert the menu selection to an integer
-
+            menu_selection = int(menu_selection)
 
                 # 4. Check if the menu selection is in the menu items
+            if menu_selection in menu_items.keys():
 
                     # Store the item name as a variable
-
+                item_name =menu_items[menu_selection]
 
                     # Ask the customer for the quantity of the menu item
-
+                
 
                     # Check if the quantity is a number, default to 1 if not
-
+            quantity =int(quantity)
+            except ValueError:
+            print("Invalid quantity input. Defaulting to quantity of 1.")
+            quantity = 1
 
                     # Add the item name, price, and quantity to the order list
-
+            
 
                     # Tell the customer that their input isn't valid
 
@@ -158,19 +178,24 @@ while place_order:
         # 5. Check the customer's input
 
                 # Keep ordering
-
+        if keep_ordering.upper() == "Y":
+            
+            
+                # Continue with the order process here
+            menu_selection = input("Please enter your selection from the menu.")
                 # Exit the keep ordering question loop
-
+            elif keep_ordering.upper() == "N":
                 # Complete the order
-
+            print("Thank you for your order.")
+            break
                 # Since the customer decided to stop ordering, thank them for
                 # their order
 
                 # Exit the keep ordering question loop
-
+            break
 
                 # Tell the customer to try again
-
+            print("Please try again.")
 
 # Print out the customer's order
 print("This is what we are preparing for you.\n")
